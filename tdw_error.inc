@@ -48,6 +48,8 @@
 	#define RaiseError RaiseErrorA
 #endif
 
+const TDW_ERR_MESSAGE_SIZE = 54;
+
 enum {
 	// from amx.h
 	AMX_ERR_NONE,
@@ -80,7 +82,7 @@ enum {
 	AMX_ERR_GENERAL      /* general error (unknown or unspecific error) */
 };
 
-static static messages[] = {
+static stock messages[][TDW_ERR_MESSAGE_SIZE] = {
 	// from amxaux.c
 	/* AMX_ERR_NONE      */ "(none)",
 	/* AMX_ERR_EXIT      */ "Forced exit",
@@ -109,7 +111,7 @@ static static messages[] = {
 	/* AMX_ERR_INIT_JIT  */ "Cannot initialize the JIT",
 	/* AMX_ERR_PARAMS    */ "Parameter error",
 	/* AMX_ERR_DOMAIN    */ "Domain error, expression result does not fit in range",
-	/* AMX_ERR_GENERAL   */ "General error (unknown or unspecific error)",
+	/* AMX_ERR_GENERAL   */ "General error (unknown or unspecific error)"
 };
 
 stock RaiseErrorL(code)
@@ -213,6 +215,6 @@ stock StrError(dest[], errnum, size = sizeof dest)
 {
 	dest[0] = '\0';
 	if (errnum < 0 || errnum >= sizeof messages)
-		return strcat(dest, "(unknown)");
-	return strcat(dest, messages[errnum]);
+		return strcat(dest, "(unknown)", size);
+	return strcat(dest, messages[errnum], size);
 }

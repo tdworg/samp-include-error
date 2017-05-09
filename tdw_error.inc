@@ -9,6 +9,9 @@
 | Dependencies:
 	- AMX Assembly (https://github.com/Zeex/amx_assembly)
 
+| Compatible with the JIT plugin:
+	Yes
+
 | License:
 	Copyright (c) 2017 Double V
 
@@ -39,10 +42,11 @@
 
 #define _TDW_ERROR
 
+#tryinclude "amx\amx_jit"
 #tryinclude "amx\frame_info"
 #tryinclude "amx\amx_memory"
 
-#if defined AMX_MEMORY_INC && defined FRAME_INFO_INC
+#if defined AMX_MEMORY_INC && defined FRAME_INFO_INC && defined AMX_JIT_INC
 	#define RaiseError RaiseErrorL
 #else
 	#define RaiseError RaiseErrorA
@@ -116,6 +120,8 @@ static stock messages[][TDW_ERR_MESSAGE_SIZE] = {
 
 stock RaiseErrorL(code)
 {
+	if (GetJITGeneratorVersion())
+		RaiseErrorA(code);
 	new
 		hdr[AMX_HDR],
 		ret_addr = GetCurrentFrameReturn();

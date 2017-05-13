@@ -7,7 +7,7 @@
 	1.0.2
 
 | Dependencies:
-	- AMX Assembly (https://github.com/Zeex/amx_assembly)
+	- AMX Assembly (https://github.com/Zeex/amx_assembly) (optional)
 
 | Compatible with the JIT plugin:
 	Yes

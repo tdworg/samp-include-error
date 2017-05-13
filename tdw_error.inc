@@ -223,6 +223,6 @@ stock StrError(dest[], errnum, bool:packed = false, size = sizeof dest)
 	if (errnum < 0 || errnum >= sizeof messages)
 		return strcat(dest, !"(unknown)", size);
 	if (_:packed == 0)
-		return strunpack(dest, message[errnum], size);
+		return strunpack(dest, messages[errnum], size);
 	return strcat(dest, messages[errnum], size);
 }

@@ -4,7 +4,7 @@
 | Description:
 
 | Version:
-	1.0.3
+	1.0.4
 
 | Dependencies:
 	- AMX Assembly (https://github.com/Zeex/amx_assembly) (optional)
